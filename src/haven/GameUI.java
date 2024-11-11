@@ -1757,7 +1757,8 @@ public class GameUI extends ConsoleHost implements Console.Directory, UI.Message
 	public static KeyBinding kb_aggroAllNonFriendlyPlayers = KeyBinding.get("AggroAllNonFriendlyPlayers",   KeyMatch.nil);
 	public static KeyBinding kb_aggroLastTarget = KeyBinding.get("aggroLastTarget",  KeyMatch.forchar('T', KeyMatch.S));
 	public static KeyBinding kb_peaceCurrentTarget  = KeyBinding.get("peaceCurrentTargetKB",  KeyMatch.forchar('P', KeyMatch.M));
-    public boolean globtype(char key, KeyEvent ev) {
+	public static KeyBinding kb_traverse = KeyBinding.get("kb_traverse", KeyMatch.forcode(KeyEvent.VK_A, KeyMatch.S));
+	public boolean globtype(char key, KeyEvent ev) {
 	if(key == ':') {
 	    entercmd();
 	    return(true);
@@ -1892,7 +1893,9 @@ public class GameUI extends ConsoleHost implements Console.Directory, UI.Message
 		return(true);
 	} else if(kb_peaceCurrentTarget.key().match(ev)) {
 		peaceCurrentTarget();
-		return(true);
+		return (true);
+	} else if (kb_traverse.key().match(ev)) {
+		this.runActionThread(new Thread(new Traverse(this), "Traverse"));
 	} else if((key == 27) && (map != null) && !map.hasfocus) {
 	    setfocus(map);
 	    return(true);
