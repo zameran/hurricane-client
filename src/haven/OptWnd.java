@@ -2320,7 +2320,8 @@ public class OptWnd extends Window {
 		y = addbtnImproved(cont, "Re-Aggro Animal (Cheese)", "Use this to cheese animals and re-aggro them quickly when they flee." +
 				"\n$col[185,185,185]{This is useful when you use animal auto-peace. Also, it only works when you're fighting one single animal.}", new Color(255, 68, 0,255), GameUI.kb_aggroLastTarget, y);
 		y = addbtnImproved(cont, "Peace Current Target", "", new Color(0, 255, 34,255), GameUI.kb_peaceCurrentTarget, y);
-
+		y = addbtnImproved(cont, "Traverse", "Tries to traverse through doors/caves/etc",  new Color(0, 255, 34, 255), GameUI.kb_traverse, y);
+		y = addbtnImproved(cont, "Switch Camera", "Tries to switch camera mode",  new Color(255, 68, 0, 255), GameUI.kb_camera, y);
 		y = cont.adda(new Label("Other Custom features"), cont.sz.x / 2, y + UI.scale(10), 0.5, 0.0).pos("bl").adds(0, 5).y;
 		y = addbtnImproved(cont, "Drink Button", "", new Color(0, 140, 255, 255), GameUI.kb_drinkButton, y+6);
 		y = addbtn(cont, "Left Hand (Quick-Switch)", GameUI.kb_leftQuickSlotButton, y);
@@ -2794,6 +2795,7 @@ public class OptWnd extends Window {
 	public static CheckBox reverseFreeCamYAxisCheckBox;
 	public static CheckBox lockVerticalAngleAt45DegreesCheckBox;
 	public static CheckBox allowLowerFreeCamTiltCheckBox;
+	public static RadioGroup camGrp;
 
 	public class CameraSettingsPanel extends Panel {
 
@@ -2804,7 +2806,7 @@ public class OptWnd extends Window {
 			Widget OrthoPrev; // ND: used to calculate the positions for the Ortho camera settings
 
 			TopPrev = add(new Label("Selected Camera Type:"), 0, 0);{
-				RadioGroup camGrp = new RadioGroup(this) {
+				camGrp = new RadioGroup(this) {
 					public void changed(int btn, String lbl) {
 						try {
 							if(btn==0) {

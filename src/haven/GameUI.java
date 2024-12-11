@@ -1792,7 +1792,9 @@ public class GameUI extends ConsoleHost implements Console.Directory, UI.Notice.
 	public static KeyBinding kb_aggroLastTarget = KeyBinding.get("aggroLastTarget",  KeyMatch.forchar('T', KeyMatch.S));
 	public static KeyBinding kb_peaceCurrentTarget  = KeyBinding.get("peaceCurrentTargetKB",  KeyMatch.forchar('P', KeyMatch.M));
 	public static KeyBinding kb_miniStudy = KeyBinding.get("miniStudyKB",  KeyMatch.forchar('S', KeyMatch.M));
-    public boolean globtype(GlobKeyEvent ev) {
+	public static KeyBinding kb_traverse = KeyBinding.get("kb_traverse", KeyMatch.forcode(KeyEvent.VK_A, KeyMatch.S));
+	public static KeyBinding kb_camera = KeyBinding.get("kb_camera", KeyMatch.forcode(KeyEvent.VK_C, KeyMatch.S));
+	public boolean globtype(GlobKeyEvent ev) {
 	if(ev.c == ':') {
 	    entercmd();
 	    return(true);
@@ -1944,6 +1946,16 @@ public class GameUI extends ConsoleHost implements Console.Directory, UI.Notice.
 	} else if(kb_miniStudy.key().match(ev)) {
 		miniStudy.show(!miniStudy.visible);
 		return(true);
+	} else if (kb_traverse.key().match(ev)) {
+		this.runActionThread(new Thread(new Traverse(this), "Traverse"));
+		return (true);
+	} else if (kb_camera.key().match(ev)) {
+		if (MapView.currentCamera == 1) {
+			OptWnd.camGrp.check(1);
+		} else if (MapView.currentCamera == 2) {
+			OptWnd.camGrp.check(0);
+		}
+		return (true);
 	} else if((ev.c == 27) && (map != null) && !map.hasfocus) {
 	    setfocus(map);
 	    return(true);
