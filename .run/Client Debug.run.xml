@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Client Debug" type="JarApplication">
+    <option name="JAR_PATH" value="$PROJECT_DIR$/bin/hafen.jar" />
+    <option name="VM_PARAMETERS" value="-Xms2G -Xmx8G -Dsun.java2d.uiScale.enabled=false -Dhaven.defserv=game.havenandhearth.com -Dhaven.resurl=https://game.havenandhearth.com/res/ -Dhaven.screenurl=http://game.havenandhearth.com/mt/ss -Dhaven.cachebase=http://game.havenandhearth.com/render/ -Dhaven.mapbase=http://game.havenandhearth.com/java/ -Dhaven.fullscreen=off --add-exports java.base/java.lang=ALL-UNNAMED --add-exports java.desktop/sun.awt=ALL-UNNAMED --add-exports java.desktop/sun.java2d=ALL-UNNAMED" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bin" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <method v="2" />
+  </configuration>
+</component>
